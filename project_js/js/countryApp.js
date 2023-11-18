@@ -1,16 +1,12 @@
 
 
 import Country from "./countryClass.js";
-
-
 const firstCountries = [
     "israel",
     "usa",
     "france",
     "thailand",
   ];
-
-
   export const startCountries=()=>{
   document.getElementById("countryDiv").innerHTML = "";
 
@@ -59,7 +55,6 @@ const firstCountries = [
   const daclareEvent= ()=>{
     document.getElementById("home_id").addEventListener("click",()=>{
       startCountries();
-
     })
     document.getElementById("israel_country").addEventListener("click",()=>{
         createCountry("israel")
@@ -75,14 +70,18 @@ const firstCountries = [
     })
     document.getElementById("submit_search").addEventListener("click",()=>{
       let country_name= document.getElementById("input_country").value
-      createCountry(country_name);
-
+            createCountry(country_name);
     })
 
   }
 
-window.onload=function(){
-  daclareEvent();
+  window.onload = function () {
+    daclareEvent();
+    // Check if the flag is set in session storage
+    if (!sessionStorage.getItem('countriesInitialized')) {
+        // If the flag is not set, execute the function and set the flag
+        startCountries();
+        sessionStorage.setItem('countriesInitialized', 'true');
+    }
 }
-
 
